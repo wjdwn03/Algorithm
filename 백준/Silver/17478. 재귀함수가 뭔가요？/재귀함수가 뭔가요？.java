@@ -50,8 +50,9 @@ public class Main {
                 case 1:
                     sb.append("마을 사람들은 모두 그 선인에게 수많은 질문을 했고, 모두 지혜롭게 대답해 주었지.");
                     break;
-                case 2:
+                default:
                     sb.append("그의 답은 대부분 옳았다고 하네. 그런데 어느 날, 그 선인에게 한 선비가 찾아와서 물었어.\"");
+                    break;
             }
             sb.append("\n");
         }
