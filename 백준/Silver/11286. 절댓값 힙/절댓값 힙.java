@@ -19,7 +19,6 @@ public class Main {
 
 		for (int i = 0; i < N; i++) {
 			int num = Integer.parseInt(br.readLine());
-			int numAbs = Math.abs(num);
 
 			if (num != 0) { // 0이 아닌 경우 큐에 추가해준다.
 				if (num < 0) { // 0보다 작은 경우 내림차순
