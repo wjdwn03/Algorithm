@@ -10,18 +10,19 @@ public class Main {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st;
 		StringBuilder sb = new StringBuilder();
+        int a=0, b=0;
 
 		while (true) {
 			try {
-			st = new StringTokenizer(br.readLine());
+			    st = new StringTokenizer(br.readLine());
 			
-			int a = Integer.parseInt(st.nextToken());
-			int b = Integer.parseInt(st.nextToken());
+			    a = Integer.parseInt(st.nextToken());
+			    b = Integer.parseInt(st.nextToken());
 
-			sb.append(a + b).append("\n");
+			    sb.append(a + b).append("\n");
 			} catch(NoSuchElementException e) {
 				break;
-			}catch(NullPointerException e) {
+			} catch(NullPointerException e) {
 				break;
 			}
 
