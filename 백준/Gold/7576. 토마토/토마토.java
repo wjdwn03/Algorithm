@@ -26,6 +26,7 @@ public class Main {
 		arr = new int[N][M];
 
 		list = new ArrayList<>();
+		int zero = 0;
 
 		for (int i = 0; i < N; i++) {
 			st = new StringTokenizer(br.readLine());
@@ -35,10 +36,20 @@ public class Main {
 				// 익은 토마토를 리스트에 담아준다.
 				if (arr[i][j] == 1)
 					list.add(new Point(i, j));
+                
+                // 익지 않은 토마토 개수를 센다.
+				if (arr[i][j] == 0)
+					zero++;
 			}
 		} // end input
 
-		int num = bfs(0);
+		
+		int num = zero;
+		
+        // 익지 않은 토마토가 있는 경우에만 bfs를 호출한다.
+		if(zero != 0) {
+			num = bfs(0);
+		}
 
 		System.out.println(num);
 
