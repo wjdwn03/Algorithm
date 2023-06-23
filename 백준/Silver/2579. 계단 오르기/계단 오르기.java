@@ -14,7 +14,7 @@ public class Main {
 
 		N = Integer.parseInt(br.readLine());
 
-		stair = new int[301];
+		stair = new int[301]; // N이 2나 3이면 ArrayIndexOutOfBounds 에러 발생하기 때문에 N의 최댓값 + 1로 길이 지정함.
 		max = new int[301];
 
 		for (int i = 1; i <= N; i++) {
