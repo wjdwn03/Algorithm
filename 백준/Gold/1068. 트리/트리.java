@@ -58,7 +58,7 @@ public class Main {
 			// deleteN 직속 자식은 지웠지만 자식노드가 deleteN인 경우는 안 지웠기 때문에 그 경우엔 continue
 			if(list[idx].get(i)==deleteN) {
 				
-				// 자식 노드가 한 개 밖에 없는데 그게 deleteN 번 노드면 이게 삭제되고 나면 list[idx].get(i)가 리프노드이다.
+				// 자식 노드가 한 개 밖에 없는데 그게 deleteN 번 노드면 이게 삭제되고 나면 idx가 리프노드이다.
 				// 그리고 루트 노드는 1부터 시작하는데 0부터 호출하기 때문에 0도 제외한다.
 				if(size==1 && idx != 0) {
 					cnt++;
