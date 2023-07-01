@@ -3,7 +3,8 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -15,7 +16,7 @@ public class Main {
 
 		int T = Integer.parseInt(br.readLine());
 
-		Stack<Integer> stack = new Stack<>();
+		Deque<Integer> stack = new ArrayDeque<>();
 		
 		int size=0;
 
@@ -24,7 +25,7 @@ public class Main {
 			String order = br.readLine();
 
 			if (order.contains("push")) {
-				stack.add(Integer.parseInt(order.substring(5)));
+				stack.push(Integer.parseInt(order.substring(5)));
 				size++;
 			} else if (order.contains("pop")) {
 				if (size==0) {
