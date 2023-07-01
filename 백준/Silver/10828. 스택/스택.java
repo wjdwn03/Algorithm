@@ -1,6 +1,8 @@
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.Stack;
 import java.util.StringTokenizer;
 
@@ -9,51 +11,51 @@ public class Main {
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st;
-		StringBuilder sb = new StringBuilder();
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
 		int T = Integer.parseInt(br.readLine());
 
 		Stack<Integer> stack = new Stack<>();
+		
+		int size=0;
 
 		for (int t = 0; t < T; t++) {
-			st = new StringTokenizer(br.readLine());
 
-			String order = st.nextToken();
+			String order = br.readLine();
 
-			if (order.equals("push")) {
-				stack.add(Integer.parseInt(st.nextToken()));
-			} else if (order.equals("pop")) {
-				if (emptyCheck(stack)) {
-					sb.append(-1).append("\n");
+			if (order.contains("push")) {
+				stack.add(Integer.parseInt(order.substring(5)));
+				size++;
+			} else if (order.contains("pop")) {
+				if (size==0) {
+					bw.write("-1");
 				} else {
-					sb.append(stack.pop()).append("\n");
+					bw.write(String.valueOf(stack.pop()));
+					size--;
 				}
-			} else if (order.equals("size")) {
-				sb.append(stack.size()).append("\n");
-			} else if (order.equals("empty")) {
-				if (emptyCheck(stack)) {
-					sb.append(1).append("\n");
+				bw.newLine();
+			} else if (order.contains("size")) {
+				bw.write(String.valueOf(size));
+				bw.newLine();
+			} else if (order.contains("empty")) {
+				if (size==0) {
+					bw.write("1");
 				} else {
-					sb.append(0).append("\n");
+					bw.write("0");
 				}
-			} else if (order.equals("top")) {
-				if (emptyCheck(stack)) {
-					sb.append(-1).append("\n");
+				bw.newLine();
+			} else if (order.contains("top")) {
+				if (size==0) {
+					bw.write("-1");
 				} else {
-					sb.append(stack.peek()).append("\n");
+					bw.write(String.valueOf(stack.peek()));
 				}
+				bw.newLine();
 			}
 		} // end for t
 		
-		System.out.println(sb.toString());
-
+		bw.flush();
+		bw.close();
 	} // end main
-
-	private static boolean emptyCheck(Stack<Integer> stack) {
-		if (stack.isEmpty()) {
-			return true;
-		}
-		return false;
-	}
 
 }
