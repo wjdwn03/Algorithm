@@ -15,12 +15,12 @@ public class Main {
 		
 		Queue<String> queue = new PriorityQueue<>();
 		
-		for(int i=size; i>0; i--) {
-			String word = "";
-			for(int j=size-i; j<size; j++) {
-				word+=S.charAt(j);
-			}
-			queue.add(word);
+		for(int i=0; i<size; i++) {
+//			String word = "";
+//			for(int j=size-i; j<size; j++) {
+//				word+=S.charAt(j);
+//			}
+			queue.add(S.substring(i));
 		}
 		
 		while(!queue.isEmpty()) {
