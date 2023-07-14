@@ -17,22 +17,20 @@ public class Main {
 			list.add(Integer.parseInt(br.readLine()));
 		}
 		
-		// 내림차순 정렬
-		Collections.sort(list, Collections.reverseOrder());
+		// 오름차순 정렬
+		Collections.sort(list);
 		
 		
-		int max = list.get(0); // 정답
-		int min = list.get(0); // n개의 로프 중 최소 중량 저장
+		int max = list.get(N-1); // 정답
 		
-		for(int n=0; n<N; n++) {
+		for(int n=N-1; n>=0; n--) {
 			
-			min = Math.min(min, list.get(n));
+			int w = list.get(n) * (N-n);
 			
-			if(max > min * (n+1)) // (최소 중량 * n) 이 max의 값보다 작거나 같으면 넘긴다.
+			if(max >= w) // (최소 중량 * n) 이 max의 값보다 작거나 같으면 넘긴다.
 				continue;
 			
-			// max의 중량을 n개의 로프에 동일한 중량으로 나눠서 걸려면 (n개의 로프 중 최소 중량 * n)을 해야 최댓값이 나옴.
-			max = min * (n+1); 
+			max = w; 
 		}
 		
 		System.out.println(max);
