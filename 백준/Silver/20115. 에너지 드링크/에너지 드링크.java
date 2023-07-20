@@ -11,23 +11,21 @@ public class Main {
 
 		int N = Integer.parseInt(br.readLine());
 
-		int[] arr = new int[N];
-
 		StringTokenizer st = new StringTokenizer(br.readLine());
 
+		double energy = 0;
+		int num = 0;
+		int max = 0;
+		
 		for (int i = 0; i < N; i++) {
-			arr[i] = Integer.parseInt(st.nextToken());
+			num = Integer.parseInt(st.nextToken());
+			max = Math.max(max, num);
+			energy += num;
 		}
 
-		Arrays.sort(arr);
-
-		double energy = arr[N - 1];
-
-		for (int i = N - 2; i >= 0; i--) {
-			energy += arr[i] / 2.0;
-		}
-
-		System.out.println(energy);
+		double ans = max + (energy-max) / 2.0;
+		
+		System.out.println(ans);
 	}
 
 }
