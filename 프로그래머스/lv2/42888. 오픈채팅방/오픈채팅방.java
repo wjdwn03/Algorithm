@@ -11,24 +11,21 @@ class Solution {
         
         for(int i=0; i<record.length; i++){
             
-            StringTokenizer st = new StringTokenizer(record[i]); // 공백을 구분자로 나눠준다.
+            String[] input = record[i].split(" "); // 공백을 구분자로 나눠준다.
             
-            String word = st.nextToken(); // 명령어
-            String id = st.nextToken(); // 유저 아이디
             
-            if(!word.equals("Leave")){
-                
-                String name = st.nextToken();
-                map.put(id, name);
-                
-                if(word.equals("Enter")){
-                    list.add(new Chat(id, "님이 들어왔습니다."));
-                }
-                
-            }
+            if (!input[0].equals("Leave")) {
+
+				map.put(input[1], input[2]);
+
+				if (input[0].equals("Enter")) {
+					list.add(new Chat(input[1], "님이 들어왔습니다."));
+				}
+
+			}
             
             else { // "Leave"인 경우
-                list.add(new Chat(id, "님이 나갔습니다."));
+                list.add(new Chat(input[1], "님이 나갔습니다."));
             }
             
             int listSize = list.size();
