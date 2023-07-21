@@ -22,7 +22,7 @@ public class Main {
 		Arrays.sort(arr);
 
 		int endIdx = N - 1;
-		long m = Long.MIN_VALUE; // 정답
+		long m = 0; // 정답
 
 		// 홀수면 N-1 자리의 근손실은 굳이 계산하지 않아도 된다.
 		if (N % 2 == 1) {
