@@ -14,8 +14,8 @@ public class Main {
 		long n = Long.parseLong(st.nextToken());
 		long m = Long.parseLong(st.nextToken());
 
-		long five = countZero(n, true) - countZero(n - m, true) - countZero(m, true);
-		long two = countZero(n, false) - countZero(n - m, false) - countZero(m, false);
+		long five = countZero(n, 5) - countZero(n - m, 5) - countZero(m, 5);
+		long two = countZero(n, 2) - countZero(n - m, 2) - countZero(m, 2);
 
 		// 팩토리얼 0의 개수는 하나의 숫자에 대한 팩토리얼을 구하는 것이기 때문에 무조건 2가 포함되어 있다.
 		// 그래서 5로 나는 것만 구해도 괜찮다.
@@ -25,12 +25,7 @@ public class Main {
 		System.out.println(ans);
 	}
 
-	public static long countZero(long num, boolean isFive) {
-
-		long divideNum = 2;
-
-		if (isFive)
-			divideNum = 5;
+	public static long countZero(long num, int divideNum) {
 
 		long cnt = 0;
 
