@@ -1,6 +1,7 @@
 # [Silver V] 팩토리얼 0의 개수 - 1676 
 
 [문제 링크](https://www.acmicpc.net/problem/1676) 
+[참고 링크](https://st-lab.tistory.com/165)
 
 ### 성능 요약
 
