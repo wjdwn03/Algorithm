@@ -19,9 +19,15 @@ public class Main {
 		// B에서 A로 만드는게 연산의 최솟값이 나온다.
 		while (A != B) {
 
+			// A가 더 커지는 경우 break
+			if (A > B) {
+				break;
+			}
+			
 			if (B % 2 == 0) {
 				B /= 2;
 			}
+			
 			// 홀수인 경우
 			else {
 				// 끝에 1을 떼어내기 위해 10으로 나눠준다.
@@ -36,10 +42,6 @@ public class Main {
 
 			cnt++;
 
-			// A가 더 커지는 경우 break
-			if (A > B) {
-				break;
-			}
 			if (A == B) {
 				ans = cnt;
 			}
