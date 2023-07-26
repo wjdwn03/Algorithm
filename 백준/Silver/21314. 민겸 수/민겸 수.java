@@ -66,8 +66,8 @@ public class Main {
 
 		} // end for
 
-		System.out.println(maxSb);
-		System.out.println(minSb);
+		System.out.println(maxSb.toString());
+		System.out.println(minSb.toString());
 
 	}
 
