@@ -28,29 +28,23 @@ public class Main {
 		} // end input
 
 		ans = 0;
+		int cnt = 0;
 
 		if (N != 1) {
-			dfs(0, arr);
+			dfs(0, arr, cnt);
 		}
 
 		System.out.println(ans);
 
 	}
 
-	private static void dfs(int now, Egg[] arr) {
+	private static void dfs(int now, Egg[] arr, int cnt) {
 
 		if (now == N) {
 
-			int cnt = 0;
-			for (int i = 0; i < N; i++) {
-				if (arr[i].s <= 0) {
-					cnt++;
-				}
-			}
-
 			ans = Math.max(ans, cnt);
-
 			return;
+            
 		} // end if
 
 		for (int i = 0; i < N; i++) {
@@ -74,10 +68,21 @@ public class Main {
 			arr[now].s = eggOne;
 			arr[i].s = eggTwo;
 
-			dfs(now + 1, arr);
+			if (originOne > 0 && eggOne <= 0)
+				cnt++;
+
+			if (originTwo > 0 && eggTwo <= 0)
+				cnt++;
+
+			dfs(now + 1, arr, cnt);
 
 			arr[now].s = originOne;
 			arr[i].s = originTwo;
+
+			if (originOne > 0 && eggOne <= 0)
+				cnt--;
+			if (originTwo > 0 && eggTwo <= 0)
+				cnt--;
 
 		}
 	}
