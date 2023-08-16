@@ -1,0 +1,94 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.StringTokenizer;
+
+public class Main {
+
+	static int N, ans;
+
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st;
+
+		N = Integer.parseInt(br.readLine());
+
+		Egg[] arr = new Egg[N];
+
+		for (int i = 0; i < N; i++) {
+			st = new StringTokenizer(br.readLine());
+
+			int s = Integer.parseInt(st.nextToken());
+			int w = Integer.parseInt(st.nextToken());
+
+			arr[i] = new Egg(s, w);
+		} // end input
+
+		ans = 0;
+
+		if (N != 1) {
+			dfs(0, arr);
+		}
+
+		System.out.println(ans);
+
+	}
+
+	private static void dfs(int now, Egg[] arr) {
+
+		if (now == N) {
+
+			int cnt = 0;
+			for (int i = 0; i < N; i++) {
+				if (arr[i].s <= 0) {
+					cnt++;
+				}
+			}
+
+			ans = Math.max(ans, cnt);
+
+			return;
+		} // end if
+
+		for (int i = 0; i < N; i++) {
+
+			if (now == i)
+				continue;
+
+			int originOne = arr[now].s;
+			int originTwo = arr[i].s;
+
+			int eggOne = originOne;
+			int eggTwo = originTwo;
+
+			if (arr[now].s > 0 && arr[i].s > 0) {
+
+				eggOne = arr[now].s - arr[i].w;
+				eggTwo = arr[i].s - arr[now].w;
+
+			}
+
+			arr[now].s = eggOne;
+			arr[i].s = eggTwo;
+
+			dfs(now + 1, arr);
+
+			arr[now].s = originOne;
+			arr[i].s = originTwo;
+
+		}
+	}
+
+	static class Egg {
+		int s, w;
+
+		public Egg(int s, int w) {
+			this.s = s;
+			this.w = w;
+		}
+	}
+
+}
