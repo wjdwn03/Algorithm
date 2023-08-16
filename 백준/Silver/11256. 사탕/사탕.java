@@ -2,6 +2,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Collections;
+
+import java.util.Queue;
+import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -19,7 +24,7 @@ public class Main {
 			int J = Integer.parseInt(st.nextToken());
 			int N = Integer.parseInt(st.nextToken());
 
-			int[] arr = new int[N];
+			Queue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
 
 			int sum = 0;
 			int cnt = 0;
@@ -31,15 +36,13 @@ public class Main {
 				int r = Integer.parseInt(st.nextToken());
 				int c = Integer.parseInt(st.nextToken());
 
-				arr[i] = r * c;
+				pq.add(r * c);
 
 			}
 
-			Arrays.sort(arr);
-
 			for (int i = N - 1; i >= 0; i--) {
 
-				sum += arr[i];
+				sum += pq.poll();
 
 				cnt++;
 
