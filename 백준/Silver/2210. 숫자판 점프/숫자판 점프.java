@@ -9,14 +9,13 @@ import java.util.StringTokenizer;
 public class Main {
 
 	static int[][] arr;
-	static HashMap<String, Integer> hashmap;
+	static HashMap<Integer, Integer> hashmap;
 	static int[] di = { -1, 1, 0, 0 };
 	static int[] dj = { 0, 0, -1, 1 };
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st;
-		StringBuilder sb;
 
 		arr = new int[5][5];
 		hashmap = new HashMap<>();
@@ -30,44 +29,30 @@ public class Main {
 
 		for (int i = 0; i < 5; i++) {
 			for (int j = 0; j < 5; j++) {
-				sb = new StringBuilder();
-				bfs(i, j, String.valueOf(arr[i][j]));
+				dfs(i, j, arr[i][j], 1);
 			}
 		}
 
 		System.out.println(hashmap.size());
 	}
 
-	private static void bfs(int nowi, int nowj, String num) {
-
-		Queue<Point> queue = new ArrayDeque<>();
-
-		queue.offer(new Point(nowi, nowj, num));
-
-		while (!queue.isEmpty()) {
-			Point cur = queue.poll();
-
-			if (cur.num.length() > 6)
-				continue;
-
-			if (cur.num.length() == 6) {
-				if (!hashmap.containsKey(cur.num)) {
-					hashmap.put(cur.num, 1);
-				}
-				continue;
+	private static void dfs(int nowi, int nowj, int num, int cnt) {
+		if (cnt == 6) {
+			if (!hashmap.containsKey(num)) {
+				hashmap.put(num, 1);
 			}
 
-			for (int d = 0; d < 4; d++) {
-				int nexti = cur.i + di[d];
-				int nextj = cur.j + dj[d];
+			return;
+		}
 
-				if (nexti < 0 || nexti >= 5 || nextj < 0 || nextj >= 5)
-					continue;
+		for (int d = 0; d < 4; d++) {
+			int nexti = nowi + di[d];
+			int nextj = nowj + dj[d];
 
-				String nextNum = cur.num + arr[nexti][nextj];
+			if (nexti < 0 || nexti >= 5 || nextj < 0 || nextj >= 5)
+				continue;
 
-				queue.offer(new Point(nexti, nextj, nextNum));
-			}
+			dfs(nexti, nextj, num * 10 + arr[nexti][nextj], cnt + 1);
 		}
 	}
 
