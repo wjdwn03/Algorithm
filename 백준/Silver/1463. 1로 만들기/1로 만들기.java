@@ -29,13 +29,8 @@ public class Main {
 			return;
 		}
 
-		if (now % 3 == 0) {
-			dfs(now / 3, cnt + 1);
-		} 
-        if (now % 2 == 0) {
-			dfs(now / 2, cnt + 1);
-		}
-		dfs(now - 1, cnt + 1);
+		dfs(now / 3, cnt + 1 + now % 3);
+		dfs(now / 2, cnt + 1 + now % 2);
 
 	}
 
