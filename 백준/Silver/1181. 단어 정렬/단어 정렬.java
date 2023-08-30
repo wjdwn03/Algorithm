@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.PriorityQueue;
@@ -14,30 +15,31 @@ public class Main {
 
 		int N = Integer.parseInt(br.readLine());
 
-		Queue<String> pq = new PriorityQueue<>(new Comparator<String>() {
+		String[] arr = new String[N];
+
+		for (int i = 0; i < N; i++) {
+			arr[i] = br.readLine();
+		}
+
+		Arrays.sort(arr, new Comparator<String>() {
 
 			@Override
 			public int compare(String o1, String o2) {
-
 				if (o1.length() == o2.length()) {
 					return o1.compareTo(o2);
 				} else {
 					return o1.length() - o2.length();
 				}
 			}
+
 		});
 
-		String word = "";
+		sb.append(arr[0]).append("\n");
 
-		for (int i = 0; i < N; i++) {
-			word = br.readLine();
-			if (!pq.contains(word)) {
-				pq.add(word);
+		for (int i = 1; i < N; i++) {
+			if (!arr[i - 1].equals(arr[i])) {
+				sb.append(arr[i]).append("\n");
 			}
-		}
-
-		while (!pq.isEmpty()) {
-			sb.append(pq.poll()).append("\n");
 		}
 
 		System.out.println(sb.toString());
