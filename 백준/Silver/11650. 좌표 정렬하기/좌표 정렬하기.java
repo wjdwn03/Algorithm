@@ -2,6 +2,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
+import java.util.PriorityQueue;
+import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -13,7 +15,7 @@ public class Main {
 
 		int N = Integer.parseInt(br.readLine());
 
-		Point[] arr = new Point[N];
+		Queue<Point> pq = new PriorityQueue<>();
 
 		for (int i = 0; i < N; i++) {
 			st = new StringTokenizer(br.readLine());
@@ -21,13 +23,12 @@ public class Main {
 			int x = Integer.parseInt(st.nextToken());
 			int y = Integer.parseInt(st.nextToken());
 
-			arr[i] = new Point(x, y);
+			pq.add(new Point(x, y));
 		}
 
-		Arrays.sort(arr);
-
 		for (int i = 0; i < N; i++) {
-			sb.append(arr[i].i).append(" ").append(arr[i].j).append("\n");
+			Point cur = pq.poll();
+			sb.append(cur.i).append(" ").append(cur.j).append("\n");
 		}
 
 		System.out.println(sb.toString());
