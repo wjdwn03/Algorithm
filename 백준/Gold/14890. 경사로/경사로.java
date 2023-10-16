@@ -30,11 +30,10 @@ public class Main {
 
 		// 행 확인
 		for (int i = 0; i < N; i++) {
-			lineCheck(rowMap[i]);
-		}
-		// 열 확인
-		for (int j = 0; j < N; j++) {
-			lineCheck(colMap[j]);
+			// 행 확인
+            lineCheck(rowMap[i]);
+            // 열 확인
+            lineCheck(colMap[i]);
 		}
 
 		System.out.println(cnt);
