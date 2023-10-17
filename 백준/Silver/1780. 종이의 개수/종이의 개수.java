@@ -7,7 +7,8 @@ import java.util.StringTokenizer;
 
 public class Main {
 
-	static int N, minus, zero, one;
+	static int N;
+	static int[] count;
 	static int[][] arr;
 
 	public static void main(String[] args) throws NumberFormatException, IOException {
@@ -18,6 +19,7 @@ public class Main {
 		N = Integer.parseInt(br.readLine());
 
 		arr = new int[N][N];
+		count = new int[3]; // 0 : -1로 채워진 개수, 1: 0으로 채워진 개수, 2 : 1의 개수
 
 		for (int i = 0; i < N; i++) {
 			st = new StringTokenizer(br.readLine());
@@ -26,13 +28,9 @@ public class Main {
 			}
 		} // end input
 
-		minus = 0; // -1로만 채워진 종이의 개수
-		zero = 0; // 0으로만 채워진 종이의 개수
-		one = 0; // 1로만 채워진 종이의 개수
-
 		countPaper(0, 0, N);
 
-		sb.append(minus).append("\n").append(zero).append("\n").append(one);
+		sb.append(count[0]).append("\n").append(count[1]).append("\n").append(count[2]);
 
 		System.out.println(sb.toString());
 	}
@@ -42,7 +40,7 @@ public class Main {
 		int start = arr[nowi][nowj];
 
 		if (len == 1) {
-			countNum(start);
+			count[start + 1]++;
 			return;
 		}
 
@@ -66,7 +64,7 @@ public class Main {
 
 		// 모두 같은 숫자로 채워져 있는 경우
 		if (isAllSame) {
-			countNum(start);
+			count[start + 1]++;
 		}
 		// 종이에 다른 숫자가 섞여 있는 경우 len/3으로 줄여서 9군데 모두 확인해본다.
 		else {
@@ -84,22 +82,6 @@ public class Main {
 			countPaper(nowi + nextLen, nowj + twice, nextLen);
 			countPaper(nowi + twice, nowj + twice, nextLen);
 		}
-	}
-
-	private static void countNum(int num) {
-
-		switch (num) {
-		case -1:
-			minus++;
-			break;
-		case 0:
-			zero++;
-			break;
-		default:
-			one++;
-			break;
-		}
-		return;
 	}
 
 }
