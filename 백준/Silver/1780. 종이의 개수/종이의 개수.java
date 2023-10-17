@@ -70,17 +70,12 @@ public class Main {
 		else {
 
 			int nextLen = len / 3;
-			int twice = nextLen * 2;
 
-			countPaper(nowi, nowj, nextLen);
-			countPaper(nowi + nextLen, nowj, nextLen);
-			countPaper(nowi + twice, nowj, nextLen);
-			countPaper(nowi, nowj + nextLen, nextLen);
-			countPaper(nowi + nextLen, nowj + nextLen, nextLen);
-			countPaper(nowi + twice, nowj + nextLen, nextLen);
-			countPaper(nowi, nowj + twice, nextLen);
-			countPaper(nowi + nextLen, nowj + twice, nextLen);
-			countPaper(nowi + twice, nowj + twice, nextLen);
+			for (int i = 0; i < 3; i++) {
+				for (int j = 0; j < 3; j++) {
+					countPaper(nowi + i * nextLen, nowj + j * nextLen, nextLen);
+				}
+			}
 		}
 	}
 
