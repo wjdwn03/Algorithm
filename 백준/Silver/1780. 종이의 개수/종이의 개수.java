@@ -9,8 +9,6 @@ public class Main {
 
 	static int N, minus, zero, one;
 	static int[][] arr;
-	static int[] di = { -1, 1, 0, 0 };
-	static int[] dj = { 0, 0, -1, 1 };
 
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
