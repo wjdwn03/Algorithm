@@ -12,20 +12,25 @@ public class Main {
 		StringTokenizer st;
 
 		int N = Integer.parseInt(br.readLine());
+		int[] arr = new int[2001];
 
 		st = new StringTokenizer(br.readLine());
 
-		TreeSet<Integer> treeSet = new TreeSet<>();
+		int num = 0;
 
 		for (int i = 0; i < N; i++) {
-			treeSet.add(Integer.parseInt(st.nextToken()));
+			num = Integer.parseInt(st.nextToken()) + 1000;
+
+			if (arr[num] == 1)
+				continue;
+
+			arr[num] = 1;
 		}
 
-		for (int i = 0; i < N; i++) {
-			if (treeSet.isEmpty()) {
-				break;
+		for (int i = 0; i < 2001; i++) {
+			if (arr[i] == 1) {
+				sb.append(i - 1000).append(" ");
 			}
-			sb.append(treeSet.pollFirst()).append(" ");
 		}
 		System.out.println(sb.toString());
 	}
