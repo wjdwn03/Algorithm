@@ -49,44 +49,41 @@ public class Main {
 		visit[0][0] = true;
 
 		while (!queue.isEmpty()) {
-			int size = queue.size();
 
-			for (int s = 0; s < size; s++) {
-				Point cur = queue.poll();
-				if (map[cur.i][cur.j] != '.') {
-					ans[cur.i][cur.j] = '*';
+			Point cur = queue.poll();
+			if (map[cur.i][cur.j] != '.') {
+				ans[cur.i][cur.j] = '*';
+			}
+
+			int cnt = 0;
+
+			for (int d = 0; d < 8; d++) {
+				int nexti = cur.i + di[d];
+				int nextj = cur.j + dj[d];
+
+				if (nexti < 0 || nexti >= N || nextj < 0 || nextj >= N)
+					continue;
+
+				if (map[nexti][nextj] != '.') {
+					cnt += map[nexti][nextj] - '0';
 				}
 
-				int cnt = 0;
-
-				for (int d = 0; d < 8; d++) {
-					int nexti = cur.i + di[d];
-					int nextj = cur.j + dj[d];
-
-					if (nexti < 0 || nexti >= N || nextj < 0 || nextj >= N)
-						continue;
-
-					if (map[nexti][nextj] != '.') {
-						cnt += map[nexti][nextj] - '0';
-					}
-
-					if (visit[nexti][nextj])
-						continue;
-					queue.offer(new Point(nexti, nextj));
-					visit[nexti][nextj] = true;
-
-				}
-
-				if (map[cur.i][cur.j] == '.') {
-
-					if (cnt >= 10) {
-						ans[cur.i][cur.j] = 'M';
-					} else {
-						ans[cur.i][cur.j] = Character.forDigit(cnt, 10);
-					}
-				}
+				if (visit[nexti][nextj])
+					continue;
+				queue.offer(new Point(nexti, nextj));
+				visit[nexti][nextj] = true;
 
 			}
+
+			if (map[cur.i][cur.j] == '.') {
+
+				if (cnt >= 10) {
+					ans[cur.i][cur.j] = 'M';
+				} else {
+					ans[cur.i][cur.j] = Character.forDigit(cnt, 10);
+				}
+			}
+
 		}
 
 	}
