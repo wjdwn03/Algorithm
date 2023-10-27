@@ -1,7 +1,6 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -16,20 +15,21 @@ public class Main {
 		N = Integer.parseInt(st.nextToken());
 		M = Integer.parseInt(st.nextToken());
 		arr = new int[N];
+		max = 0;
 
 		st = new StringTokenizer(br.readLine());
 
+		int start = 0; // 이분 탐색 제일 처음 start값
+		int end = 0; // 이분 탐색 제일 처음 end값
+
 		for (int i = 0; i < N; i++) {
 			arr[i] = Integer.parseInt(st.nextToken());
+			if (end < arr[i])
+				end = arr[i];
 		} // end input
 
-		Arrays.sort(arr);
-
-		int start = 0; // 이분 탐색 제일 처음 start값
-		int end = arr[N - 1]; // 이분 탐색 제일 처음 end값
-		int mid = (start + end) / 2;
 		long sum = 0L; // 절단한 나무 길이 저장할 변수
-		max = 0;
+		int mid = (start + end) / 2;
 
 		while (start <= end) {
 
@@ -37,6 +37,7 @@ public class Main {
 
 			sum = 0L;
 
+			// 가져갈 수 있는 나무 길이 확인
 			for (int i = 0; i < N; i++) {
 				if (arr[i] <= mid)
 					continue;
@@ -46,7 +47,7 @@ public class Main {
 			}
 
 			if (sum >= M) {
-				max = Math.max(max, mid);
+				max = Math.max(mid, mid);
 				start = mid + 1;
 			} else {
 				end = mid - 1;
