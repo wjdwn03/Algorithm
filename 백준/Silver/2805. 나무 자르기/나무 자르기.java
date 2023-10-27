@@ -47,7 +47,7 @@ public class Main {
 			}
 
 			if (sum >= M) {
-				max = Math.max(mid, mid);
+				max = mid;
 				start = mid + 1;
 			} else {
 				end = mid - 1;
