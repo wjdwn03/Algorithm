@@ -41,7 +41,7 @@ public class Main {
 			for (int i = 0; i < N; i++) {
 				for (int j = 0; j < N; j++) {
 					if (!visit[i][j] && !rain[i][j]) {
-						bfs(i, j);
+						dfs(i, j);
 						cnt++;
 					}
 				}
@@ -54,26 +54,17 @@ public class Main {
 		System.out.println(ans);
 	}
 
-	private static void bfs(int starti, int startj) {
+	private static void dfs(int nowi, int nowj) {
 
-		Queue<Point> queue = new ArrayDeque<>();
+		for (int d = 0; d < 4; d++) {
+			int nexti = nowi + di[d];
+			int nextj = nowj + dj[d];
 
-		queue.offer(new Point(starti, startj));
-		visit[starti][startj] = true;
+			if (nexti < 0 || nexti >= N || nextj < 0 || nextj >= N || visit[nexti][nextj] || rain[nexti][nextj])
+				continue;
 
-		while (!queue.isEmpty()) {
-			Point cur = queue.poll();
-
-			for (int d = 0; d < 4; d++) {
-				int nexti = cur.i + di[d];
-				int nextj = cur.j + dj[d];
-
-				if (nexti < 0 || nexti >= N || nextj < 0 || nextj >= N || visit[nexti][nextj] || rain[nexti][nextj])
-					continue;
-
-				visit[nexti][nextj] = true;
-				queue.add(new Point(nexti, nextj));
-			}
+			visit[nexti][nextj] = true;
+			dfs(nexti, nextj);
 		}
 
 	}
