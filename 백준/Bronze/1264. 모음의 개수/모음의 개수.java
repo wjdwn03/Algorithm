@@ -12,20 +12,6 @@ public class Main {
 
 		String input = br.readLine();
 
-		Map<Character, Integer> map = new HashMap<>();
-
-		// 모음 입력
-		map.put('a', 1);
-		map.put('e', 1);
-		map.put('i', 1);
-		map.put('o', 1);
-		map.put('u', 1);
-		map.put('A', 1);
-		map.put('E', 1);
-		map.put('I', 1);
-		map.put('O', 1);
-		map.put('U', 1);
-
 		int cnt = 0, size = 0;
 
 		while (!input.equals("#")) {
@@ -34,8 +20,20 @@ public class Main {
 
 			for (int i = 0; i < size; i++) {
 				// 모음이 있으면 개수 증가
-				if (map.containsKey(input.charAt(i)))
+				switch (input.charAt(i)) {
+				case 'a':
+				case 'e':
+				case 'i':
+				case 'o':
+				case 'u':
+				case 'A':
+				case 'E':
+				case 'I':
+				case 'O':
+				case 'U':
 					cnt++;
+					break;
+				}
 			}
 
 			sb.append(cnt).append("\n");
