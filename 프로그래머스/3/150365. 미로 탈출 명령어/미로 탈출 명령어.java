@@ -38,7 +38,13 @@ class Solution {
 		if (!check) {
 			int checkDistanceResult = checkDistance(nowi, nowj);
 
-			if (K - dis - checkDistanceResult < 0 || (K - dis - checkDistanceResult) % 2 == 1)
+			// K : 이동해야 하는 거리
+            		// dis : 현재까지 이동한 거리
+            		// checkDistanceResult : 현재 위치에서 목적지까지의 거리
+            
+            		// 총 이동해야 하는 거리에서 dis와 checkDistanceResult를 뺀 경우 
+            		// 목적지에 도착했을 때 몇 번을 더 이동해야 K가 되는지 그 수가 나옴.
+			if (dis + checkDistanceResult > K || (K - dis - checkDistanceResult) % 2 == 1)
 				return;
 			if (dis == K) {
 				if (nowi == R && nowj == C) {
