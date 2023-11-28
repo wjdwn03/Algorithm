@@ -23,6 +23,13 @@ public class Main {
 			}
 		}
 
+        // 누적합
+		for (int i = 1; i <= N; i++) {
+			for (int j = 1; j <= M; j++) {
+				arr[i][j] = arr[i][j] + arr[i - 1][j] + arr[i][j - 1] - arr[i - 1][j - 1];
+			}
+		}
+
 		int K = Integer.parseInt(br.readLine());
 
 		for (int k = 0; k < K; k++) {
@@ -35,11 +42,10 @@ public class Main {
 
 			int sum = 0;
 
-			for (int r = i; r <= x; r++) {
-				for (int c = j; c <= y; c++) {
-					sum += arr[r][c];
-				}
-			}
+			int r = Math.max(i, x);
+			int c = Math.min(j, y) - 1;
+
+			sum = arr[x][y] - arr[x][j - 1] - arr[i - 1][y] + arr[i - 1][j - 1];
 
 			sb.append(sum).append("\n");
 		}
