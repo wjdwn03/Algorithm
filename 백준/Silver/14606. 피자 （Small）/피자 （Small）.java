@@ -14,9 +14,9 @@ public class Main {
 
 		dp = new int[N + 1];
 
-		int ans = dfs(N);
+		dfs(N);
 
-		System.out.println(ans);
+		System.out.println(dp[N]);
 	}
 
 	private static int dfs(int n) {
