@@ -14,23 +14,11 @@ public class Main {
 
 		dp = new int[N + 1];
 
-		dfs(N);
-
-		System.out.println(dp[N]);
-	}
-
-	private static int dfs(int n) {
-
-		if (n <= 1)
-			return 0;
-
-		if (dp[n] == 0) {
-
-			dp[n] = n / 2 * (n - n / 2) + dfs(n / 2) + dfs(n - n / 2);
+		for (int i = 1; i <= N; i++) {
+			dp[i] = (i / 2) * (i - i / 2) + dp[i / 2] + dp[i - i / 2];
 		}
 
-		return dp[n];
-
+		System.out.println(dp[N]);
 	}
 
 }
