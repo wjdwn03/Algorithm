@@ -64,10 +64,12 @@ public class Main {
 	public static void union(int a, int b) {
 		int aParent = find(a);
 		int bParent = find(b);
-        
-        if(aParent != bParent){
-		    parent[bParent] = aParent;
-        }
+
+		if (aParent < bParent) {
+			parent[bParent] = aParent;
+		} else {
+			parent[aParent] = bParent;
+		}
 	}
 
 	static class City implements Comparable<City> {
