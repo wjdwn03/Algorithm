@@ -16,29 +16,21 @@ public class Main {
 		N = Integer.parseInt(st.nextToken());
 		K = Integer.parseInt(st.nextToken());
 
-		dp = new int[N + 1][K + 1];
+		dp = new int[31][31];
 		dp[1][1] = 1;
+		dp[2][1] = 1;
+		dp[2][2] = 1;
 
-		int ans;
+		for (int i = 3; i <= N; i++) {
 
-		if (N == K || K == 1) {
-			ans = 1;
-		} else {
-			ans = dfs(N, K);
+			dp[i][1] = 1;
+			dp[i][i] = 1;
+
+			for (int j = 2; j < i; j++) {
+				dp[i][j] = dp[i - 1][j - 1] + dp[i - 1][j];
+			}
 		}
 
-		System.out.println(ans);
+		System.out.println(dp[N][K]);
 	}
-
-	private static int dfs(int i, int j) {
-
-		if (i < 1 || j < 1)
-			return 0;
-
-		if (dp[i][j] != 0)
-			return dp[i][j];
-
-		return dp[i][j] = dfs(i - 1, j - 1) + dfs(i - 1, j);
-	}
-
 }
