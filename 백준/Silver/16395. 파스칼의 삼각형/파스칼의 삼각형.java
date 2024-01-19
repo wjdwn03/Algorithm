@@ -16,18 +16,19 @@ public class Main {
 		N = Integer.parseInt(st.nextToken());
 		K = Integer.parseInt(st.nextToken());
 
-		dp = new int[31][31];
-		dp[1][1] = 1;
-		dp[2][1] = 1;
-		dp[2][2] = 1;
+		dp = new int[N + 1][K + 1];
 
-		for (int i = 3; i <= N; i++) {
+		for (int i = 1; i <= N; i++) {
 
 			dp[i][1] = 1;
-			dp[i][i] = 1;
 
-			for (int j = 2; j < i; j++) {
-				dp[i][j] = dp[i - 1][j - 1] + dp[i - 1][j];
+			for (int j = 2; j <= K; j++) {
+
+				if (i == j) {
+					dp[i][j] = 1;
+				} else {
+					dp[i][j] = dp[i - 1][j - 1] + dp[i - 1][j];
+				}
 			}
 		}
 
