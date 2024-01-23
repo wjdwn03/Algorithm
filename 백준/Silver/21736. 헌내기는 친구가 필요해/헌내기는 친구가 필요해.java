@@ -7,8 +7,9 @@ import java.util.StringTokenizer;
 
 public class Main {
 
-	static int N, M, ans;
+	static int N, M, ans, peopleCnt;
 	static char[][] map;
+	static boolean[][] visit;
 	static int[] di = { -1, 1, 0, 0 };
 	static int[] dj = { 0, 0, -1, 1 };
 
@@ -21,8 +22,9 @@ public class Main {
 		M = Integer.parseInt(st.nextToken());
 
 		map = new char[N][M];
+		visit = new boolean[N][M];
 
-		int starti = 0, startj = 0, peopleCnt = 0;
+		int starti = 0, startj = 0;
 
 		for (int i = 0; i < N; i++) {
 			String input = br.readLine();
@@ -37,8 +39,9 @@ public class Main {
 		} // end input
 
 		ans = 0;
+		visit[starti][startj] = true;
 
-		bfs(starti, startj, peopleCnt);
+		dfs(starti, startj, 0);
 
 		if (ans == 0) {
 			sb.append("TT");
@@ -49,44 +52,28 @@ public class Main {
 		System.out.println(sb.toString());
 	}
 
-	private static void bfs(int starti, int startj, int peopleCnt) {
-		Queue<Point> queue = new ArrayDeque<>();
-		boolean[][] visit = new boolean[N][M];
+	private static void dfs(int nowi, int nowj, int cnt) {
 
-		queue.offer(new Point(starti, startj));
-		visit[starti][startj] = true;
-
-		while (!queue.isEmpty()) {
-			Point cur = queue.poll();
-
-			if (map[cur.i][cur.j] == 'P') {
-				map[cur.i][cur.j] = 'O';
-				ans++;
-
-				if (ans == peopleCnt)
-					return;
-			}
-
-			for (int d = 0; d < 4; d++) {
-				int nexti = cur.i + di[d];
-				int nextj = cur.j + dj[d];
-
-				if (nexti < 0 || nexti >= N || nextj < 0 || nextj >= M || visit[nexti][nextj]
-						|| map[nexti][nextj] == 'X')
-					continue;
-
-				visit[nexti][nextj] = true;
-				queue.offer(new Point(nexti, nextj));
-			}
+		if (cnt == peopleCnt) {
+			return;
 		}
-	}
 
-	static class Point {
-		int i, j;
+		for (int d = 0; d < 4; d++) {
+			int nexti = nowi + di[d];
+			int nextj = nowj + dj[d];
 
-		public Point(int i, int j) {
-			this.i = i;
-			this.j = j;
+			if (nexti < 0 || nexti >= N || nextj < 0 || nextj >= M || visit[nexti][nextj] || map[nexti][nextj] == 'X')
+				continue;
+
+			visit[nexti][nextj] = true;
+
+			if (map[nexti][nextj] == 'P') {
+				ans++;
+				map[nexti][nextj] = 'O';
+				dfs(nexti, nextj, cnt + 1);
+			} else {
+				dfs(nexti, nextj, cnt);
+			}
 		}
 	}
 
