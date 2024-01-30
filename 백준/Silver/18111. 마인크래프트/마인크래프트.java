@@ -36,6 +36,7 @@ public class Main {
 			}
 		} // end input
 
+		// 땅의 최소 높이부터 최대 높이까지를 기준으로 땅 고르기 작업을 시행하여 답을 찾음.
 		for (int num = min; num <= max; num++) {
 			check(num);
 		}
@@ -67,6 +68,8 @@ public class Main {
 				}
 
 				// 최소 시간 초과한 경우 더이상 볼 필요가 없으므로 바로 리턴
+				// timeTmp == time 인 경우에는 바로 리턴하며 안됨.
+				// 왜냐하면 답이 여러 개 있다면 그중에서 땅의 높이가 가장 높은 것을 출력해야하는 조건 때문
 				if (timeTmp > time)
 					return;
 			}
