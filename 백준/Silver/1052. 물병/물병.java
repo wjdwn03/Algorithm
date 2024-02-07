@@ -15,9 +15,14 @@ public class Main {
 		int ans = 0; // 정답
 
 		while (Integer.bitCount(N) > K) {
-			N++;
-			ans++;
+
+			// 1씩 증가시키지 않고
+			// 비트 중 가장 우측에 있는 1만큼 더함.
+			ans += N & (-N);
+			N += N & (-N);
 		}
+
 		System.out.println(ans);
 	}
+
 }
