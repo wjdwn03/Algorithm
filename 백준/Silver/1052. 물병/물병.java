@@ -14,25 +14,10 @@ public class Main {
 
 		int ans = 0; // 정답
 
-		while (true) {
-			int tmp = N; // 현재 가지고 있는 물병의 수
-			int cnt = 0; // 추가로 구매할 물병의 수
-
-			while (tmp > 0) {
-				// 홀수일 때 물병을 하나 구매
-				if (tmp % 2 == 1)
-					cnt++;
-				tmp /= 2;
-			}
-
-			if (cnt <= K)
-				break;
-
-			ans++;
+		while (Integer.bitCount(N) > K) {
 			N++;
+			ans++;
 		}
-
 		System.out.println(ans);
 	}
-
 }
