@@ -5,53 +5,48 @@ import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class Main {
-	
-	static int N;
+
+	static int N, ans;
 	static int[][] arr;
-	static int[][] tmp;
-	
+	static int[][] weight;
+
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st;
-		
+
 		N = Integer.parseInt(br.readLine());
-		
-		arr = new int[N][];
-		tmp = new int[N][];
-		
-		for(int i=0; i<N; i++) {
-			arr[i] = new int[i+1];
-			tmp[i] = new int[i+1];
-			
+		arr = new int[N][N];
+		weight = new int[N][N];
+
+		for (int i = 0; i < N; i++) {
 			st = new StringTokenizer(br.readLine());
-			
-			
-			for(int j=0; j<i+1; j++) {
+			for (int j = 0; j <= i; j++) {
 				arr[i][j] = Integer.parseInt(st.nextToken());
-				if(i==N-1) {
-					tmp[i][j] = arr[i][j];
-				}
 			}
-			
-		}
-		
-		int ans = dfs(0, 0, 0);
-		
+
+			if (i == N - 1) {
+				weight[i] = Arrays.copyOfRange(arr[i], 0, N);
+			}
+
+		} // end input
+
+		ans = dfs(0, 0);
+
 		System.out.println(ans);
 	}
 
-	private static int dfs(int nowi, int nowj, int depth) {
+	private static int dfs(int nowi, int nowj) {
 
-		
-		if(depth==N-1) {
+		if (nowi == N - 1) {
 			return arr[nowi][nowj];
 		}
-		
-		if(tmp[nowi][nowj] == 0) {
-			tmp[nowi][nowj] = arr[nowi][nowj] + Math.max(dfs(nowi+1, nowj, depth+1), dfs(nowi+1, nowj+1, depth+1));
+
+		if (weight[nowi][nowj] == 0) {
+
+			weight[nowi][nowj] = arr[nowi][nowj] + Math.max(dfs(nowi + 1, nowj), dfs(nowi + 1, nowj + 1));
 		}
-		
-		return tmp[nowi][nowj];
+
+		return weight[nowi][nowj];
 	}
 
 }
