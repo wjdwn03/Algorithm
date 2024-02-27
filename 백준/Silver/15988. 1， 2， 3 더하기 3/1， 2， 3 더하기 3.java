@@ -5,7 +5,7 @@ import java.io.InputStreamReader;
 public class Main {
 
 	static long[] dp;
-	static long[] gap;
+	static int[] input;
 	static final int MOD = 1_000_000_009;
 
 	public static void main(String[] args) throws NumberFormatException, IOException {
@@ -15,38 +15,29 @@ public class Main {
 		int T = Integer.parseInt(br.readLine());
 
 		dp = new long[1_000_001];
-		gap = new long[1_000_001];
+		input = new int[T];
 
 		dp[1] = 1;
-		gap[1] = 1;
-		gap[2] = 2;
+		dp[2] = 2;
+		dp[3] = 4;
+
+		int max = 0;
 
 		for (int t = 0; t < T; t++) {
 			int n = Integer.parseInt(br.readLine());
 
-			dfs(n);
+			input[t] = n;
+			max = Math.max(max, n);
+		}
 
-			sb.append(dp[n]).append("\n");
+		for (int i = 4; i <= max; i++) {
+			dp[i] = (dp[i - 1] + dp[i - 2] + dp[i - 3]) % MOD;
+		}
+		for (int i = 0; i < T; i++) {
+			sb.append(dp[input[i]]).append("\n");
 		}
 
 		System.out.println(sb.toString());
-	}
-
-	private static long dfs(int n) {
-
-		if (n < 2 || dp[n] != 0)
-			return dp[n];
-
-		return dp[n] = (dfs(n - 1) + getGap(n - 1)) % MOD;
-
-	}
-
-	private static long getGap(int idx) {
-
-		if (idx < 3 || gap[idx] != 0)
-			return gap[idx];
-
-		return gap[idx] = (getGap(idx - 1) + getGap(idx - 2) + getGap(idx - 3)) % MOD;
 	}
 
 }
