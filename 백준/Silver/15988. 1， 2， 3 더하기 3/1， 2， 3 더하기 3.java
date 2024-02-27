@@ -37,7 +37,7 @@ public class Main {
 		if (n < 2 || dp[n] != 0)
 			return dp[n];
 
-		return dp[n] = (dfs(n - 1) % MOD + getGap(n - 1) % MOD) % MOD;
+		return dp[n] = (dfs(n - 1) + getGap(n - 1)) % MOD;
 
 	}
 
@@ -46,7 +46,7 @@ public class Main {
 		if (idx < 3 || gap[idx] != 0)
 			return gap[idx];
 
-		return gap[idx] = (getGap(idx - 1) % MOD + getGap(idx - 2) % MOD + getGap(idx - 3) % MOD) % MOD;
+		return gap[idx] = (getGap(idx - 1) + getGap(idx - 2) + getGap(idx - 3)) % MOD;
 	}
 
 }
