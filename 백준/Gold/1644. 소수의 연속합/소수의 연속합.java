@@ -38,22 +38,21 @@ public class Main {
 
 		if (N > 1) {
 
-			int start = 0, end = 0, sum = list.get(0);
+			int start = 0, end = 0, sum = 0;
 			int size = list.size();
 
-			while (start <= end) {
+			while (end < size) {
 
-				if (sum >= N) {
-					if (sum == N) {
+				sum += list.get(end++);
+
+				if (sum == N)
+					cnt++;
+
+				while (sum > N && start <= end) {
+					sum -= list.get(start++);
+
+					if (sum == N)
 						cnt++;
-					}
-					sum -= list.get(start);
-					start++;
-				} else if (sum < N) {
-					end++;
-					if (end >= size)
-						break;
-					sum += list.get(end);
 				}
 
 			}
