@@ -22,7 +22,7 @@ public class Main {
 		for (int i = 0; i < N; i++) {
 			st = new StringTokenizer(br.readLine());
 			for (int j = 0; j < N; j++) {
-				arr[i][j] = Math.min(Integer.MAX_VALUE, Integer.parseInt(st.nextToken()));
+				arr[i][j] = Integer.parseInt(st.nextToken());
 			}
 		}
 
