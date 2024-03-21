@@ -12,11 +12,13 @@ public class Main {
 		String str = br.readLine();
 
 		BigInteger ans = new BigInteger("0");
+		BigInteger hash = new BigInteger("1");
 
 		for (int i = 0; i < L; i++) {
-			BigInteger now = new BigInteger(String.valueOf((str.charAt(i) - 'a' + 1) * (int) Math.pow(31, i)));
 
-			ans = ans.add(now);
+			ans = ans.add(BigInteger.valueOf(str.charAt(i) - 'a' + 1).multiply(hash));
+			hash = hash.multiply(BigInteger.valueOf(31));
+			ans = ans.mod(BigInteger.valueOf(1234567891L));
 		}
 
 		System.out.println(ans.toString());
