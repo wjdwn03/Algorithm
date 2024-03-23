@@ -25,13 +25,18 @@ public class Main {
 			}
 		} // end input
 
-		for (int i = 0; i < H; i++) {
+		for (int i = 0; i < X; i++) {
 			for (int j = 0; j < W; j++) {
-				if (i < X || j < Y) {
-					A[i][j] = B[i][j];
-				} else {
-					A[i][j] = B[i][j] - A[i - X][j - Y];
-				}
+				A[i][j] = B[i][j];
+			}
+		}
+
+		for (int i = X; i < H; i++) {
+			for (int j = 0; j < Y; j++) {
+				A[i][j] = B[i][j];
+			}
+			for (int j = Y; j < W; j++) {
+				A[i][j] = B[i][j] - A[i - X][j - Y];
 			}
 		}
 
