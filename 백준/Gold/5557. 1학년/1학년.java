@@ -15,18 +15,18 @@ public class Main {
 
 		N = Integer.parseInt(br.readLine());
 
-		arr = new int[N];
-		dp = new long[N][21];
+		arr = new int[N + 1];
+		dp = new long[N + 1][21];
 
 		StringTokenizer st = new StringTokenizer(br.readLine());
 
-		for (int i = 0; i < N; i++) {
+		for (int i = 1; i <= N; i++) {
 			arr[i] = Integer.parseInt(st.nextToken());
 		}
 
-		dp[0][arr[0]] = 1L;
+		dp[1][arr[1]] = 1L;
 
-		for (int i = 1; i < N - 1; i++) {
+		for (int i = 2; i < N; i++) {
 			for (int j = 0; j <= 20; j++) {
 				if (dp[i - 1][j] != 0) {
 					int plus = j + arr[i];
@@ -43,7 +43,8 @@ public class Main {
 			} // end for j
 		} // end for i
 
-		System.out.println(dp[N - 2][arr[N - 1]]);
+		// 문제에서 N-1번까지 계산을 한 결과를 N과 비교해야 하므로 N-1행을 확인함.
+		System.out.println(dp[N - 1][arr[N]]);
 
 	}
 
