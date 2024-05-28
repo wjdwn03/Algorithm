@@ -5,7 +5,7 @@ class Solution {
     public int[] solution(int N, int[] stages) {
         int[] answer = new int[N];
         int cnt = stages.length; // 총 사용자 수
-        long[] sum = new long[N+1]; // 누적합 저장할 배열
+        int[] sum = new int[N+1]; // 누적합 저장할 배열
         int[] unClearedCnt = new int[N+1]; // 아직 클리어하지 못한 사용자 수
         
         // 각 스테이지 별 클리어하지 못한 사용자 수 입력
