@@ -5,7 +5,6 @@ class Solution {
     public int[] solution(int N, int[] stages) {
         int[] answer = new int[N];
         int cnt = stages.length; // 총 사용자 수
-        int[] sum = new int[N+1]; // 누적합 저장할 배열
         int[] unClearedCnt = new int[N+1]; // 아직 클리어하지 못한 사용자 수
         
         // 각 스테이지 별 클리어하지 못한 사용자 수 입력
@@ -17,15 +16,15 @@ class Solution {
         
         Queue<Game> pq = new PriorityQueue<>();
         
-        // 누접합
         for(int i=1; i<=N; i++){
-            sum[i] = sum[i-1] + unClearedCnt[i];
+            
             double fail = 0;
             
-            if(cnt-sum[i-1] != 0){
-                fail = (double)unClearedCnt[i] / (cnt-sum[i-1]);
+            if(cnt != 0){
+                fail = (double)unClearedCnt[i] / cnt; // 실패율 계산    
             }
             
+            cnt -= unClearedCnt[i];
             pq.offer(new Game(i, fail));
         }
         
@@ -33,7 +32,6 @@ class Solution {
         
         while(!pq.isEmpty()){
             Game cur = pq.poll();
-            
             answer[idx++] = cur.stage;
         }
         
