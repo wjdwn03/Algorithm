@@ -9,11 +9,7 @@ public class Main {
 		StringBuilder sb = new StringBuilder();
 
 		int N = Integer.parseInt(br.readLine());
-		int end = N - 1;
-
-		if (N % 2 == 0) {
-			end = N;
-		}
+		int end = N - (N % 2);
 
 		for (int i = 1; i <= end; i++) {
 			if (i % 2 == 1) {
