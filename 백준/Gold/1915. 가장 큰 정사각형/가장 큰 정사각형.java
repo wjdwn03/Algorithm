@@ -14,7 +14,7 @@ public class Main {
 		int m = Integer.parseInt(st.nextToken());
 
 		int[][] arr = new int[n + 1][m + 1];
-		int[][] ans = new int[n + 1][m + 1];
+		int[][] dp = new int[n + 1][m + 1];
 
 		int max = 0;
 
@@ -29,12 +29,12 @@ public class Main {
 			for (int j = 1; j <= m; j++) {
 
 				if (arr[i - 1][j - 1] == arr[i - 1][j] && arr[i - 1][j] == arr[i][j - 1]) {
-					ans[i][j] = Math.min(ans[i - 1][j - 1], Math.min(ans[i - 1][j], ans[i][j - 1])) + arr[i][j];
+					dp[i][j] = Math.min(dp[i - 1][j - 1], Math.min(dp[i - 1][j], dp[i][j - 1])) + arr[i][j];
 				} else {
-					ans[i][j] = arr[i][j];
+					dp[i][j] = arr[i][j];
 				}
 
-				max = Math.max(max, ans[i][j]);
+				max = Math.max(max, dp[i][j]);
 			}
 		}
 
