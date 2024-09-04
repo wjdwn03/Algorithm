@@ -1,0 +1,11 @@
+SELECT TREE.ITEM_ID, INFO.ITEM_NAME, INFO.RARITY
+FROM ITEM_INFO INFO
+LEFT OUTER JOIN ITEM_TREE TREE
+    ON INFO.ITEM_ID = TREE.ITEM_ID
+    AND TREE.PARENT_ITEM_ID IS NOT NULL
+WHERE TREE.PARENT_ITEM_ID IN (
+                                SELECT ITEM_ID
+                                FROM ITEM_INFO
+                                WHERE RARITY = 'RARE'
+                             )
+ORDER BY TREE.ITEM_ID DESC;
